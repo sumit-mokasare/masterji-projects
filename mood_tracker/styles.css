@@ -1,0 +1,95 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  border: 1px solid rgb(172, 168, 168);
+  list-style-type: none;
+}
+
+span {
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
+}
+/* header part  */
+
+.container {
+  width: 100%;
+  height: 99vh;
+  padding: 3rem;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.calender-header {
+  width: 90%;
+  padding: 10px 0px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 2px solid rgb(10, 9, 9);
+}
+
+.calender-header .icon {
+  font-size: 1.4em;
+}
+.calender-header h2 {
+  text-align: center;
+  font-family: "IBM Plex Sans", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 200;
+  font-size: 3vw;
+  margin: 0px 22px;
+  width: 40%;
+  font-variation-settings: "wdth";
+}
+
+/* calender part  */
+
+.calender-container {
+  width: 90%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 3px;
+}
+.calender-side {
+  width: 80%;
+}
+
+.calender-days {
+  border-top: 1px;
+}
+.calender-weekdays {
+  height: 50px;
+  font-family: "IBM Plex Sans", sans-serif;
+}
+
+.calender-weekdays,
+.calender-days {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  text-align: center;
+  place-items: center;
+}
+
+.calender-days .date-box {
+  font-family: "IBM Plex Sans", sans-serif;
+  display: grid;
+  place-items: center;
+  width: 100%;
+  aspect-ratio: 1.4;
+  text-align: center;
+  padding: 10px;
+  cursor: pointer;
+  transition:background 0.5s ease-in-out ;
+}
+
+.today {
+  background: #f6dae8;
+}
+
+.date-box:hover {
+  background: #fdedf5;
+}
+
