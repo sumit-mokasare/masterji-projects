@@ -20,18 +20,21 @@ const moodArr = [
     },
 ]
 
-
+let allMoods = JSON.parse(localStorage.getItem('moods')) || {}
 
 let currentDate = new Date();
 
 let isToday = undefined
 let currentDay
 
-
 function getSelectedDateKey() {
-
     const selectedDate = new Date(currentDate.getFullYear(), currentDate.getMonth(), currentDay);
-    return selectedDate.toISOString().split('T')[0];
+
+    let formatDate = selectedDate.getFullYear() + '-' +
+        String(selectedDate.getMonth() + 1).padStart(2, '0') + '-' +
+        String(selectedDate.getDate()).padStart(2, '0');
+
+    return formatDate;
 }
 
 function renderCalendar(date) {
@@ -64,10 +67,41 @@ function renderCalendar(date) {
         dateBox.className = `date-box ${isToday ? 'today' : ''}`;
         dateBox.textContent = day;
 
-        dateBox.addEventListener('click', () => {
-            currentDay = day;
-            showMoodOnData();
-        });
+        // console.log(dateBox);
+        let key = `${year}-${String(month + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
+
+        let moodFormDate = allMoods[key]
+
+        const boxDate = new Date(year, month, day);
+
+        const todayOnly = new Date();
+        todayOnly.setHours(0, 0, 0, 0); // remove time part
+
+        // ✅ Check if date is in the past and has mood saved
+        if (moodFormDate && boxDate < todayOnly) {
+            dateBox.style.backgroundColor = '#FF8A8A';
+
+        }
+
+        if (moodFormDate) {
+            const img = document.createElement('img');
+            img.src = moodFormDate.img;
+            img.classList.add('mood-image');
+            dateBox.appendChild(img);
+        }
+
+
+        if (boxDate > todayOnly) {
+            dateBox.classList.add('disabled');
+        } else {
+            dateBox.addEventListener('click', () => {
+                currentDay = day;
+                document.querySelectorAll('.date-box').forEach((item) => {
+                    item.classList.remove('addFontZise')
+                })
+                dateBox.classList.toggle('addFontZise');
+            });
+        }
 
         if (isToday) {
             currentDay = day
@@ -92,7 +126,6 @@ renderCalendar(currentDate);
 
 function displyaMood(moodArr) {
     let key = getSelectedDateKey()
-  
     if (!key) {
         return 'not key found'
     }
@@ -111,6 +144,9 @@ function displyaMood(moodArr) {
         moodBoxDiv.addEventListener('click', () => {
             savetoLocalstorage(img.src)
             showMoodOnData()
+            document.querySelectorAll('.date-box').forEach((item) => {
+                item.classList.remove('addFontZise')
+            })
         })
 
         moodSideContainer.appendChild(moodBoxDiv)
@@ -124,36 +160,41 @@ function savetoLocalstorage(image) {
         img: image,
         date: key
     }
-    let allMoods = JSON.parse(localStorage.getItem('moods')) || [];
+    // let allMoods = JSON.parse(localStorage.getItem('moods')) || {};
     allMoods[key] = selectedMood
     localStorage.setItem('moods', JSON.stringify(allMoods))
 }
 
 function showMoodOnData() {
     let key = getSelectedDateKey()
-    let allMoods = JSON.parse(localStorage.getItem('moods'))
+    // let allMoods = JSON.parse(localStorage.getItem('moods')) || {}
+
+    if (!key || typeof allMoods !== 'object') return;
+
     const moodFormDate = allMoods[key];
 
     const dateBoxes = document.querySelectorAll('.date-box');
     dateBoxes.forEach((box) => {
         const day = parseInt(box.textContent)
 
-        if (!isNaN(day) && day === currentDay){
-            box.innerHTML = `${currentDay}`
+        if (!isNaN(day) && day === currentDay) {
+
+            box.innerHTML = '';
+            box.textContent = currentDay;
+
             if (moodFormDate) {
                 const img = document.createElement('img');
                 img.src = moodFormDate.img;
                 img.classList.add('mood-image');
                 box.appendChild(img);
             }
+
         }
 
     })
 
 }
 
-
 displyaMood(moodArr);
-showMoodOnData()
 
 
