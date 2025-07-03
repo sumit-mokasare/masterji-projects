@@ -65,8 +65,9 @@
 
 .video-container {
   display: grid;
-  /* grid-template-columns: repeat(3, 1fr); */
-  grid-template-columns: repeat(auto-fit, minmax(370px, 1fr));
+  height: auto;
+  min-height: 100vh;
+  grid-template-columns: repeat(3, 1fr);
   color: white;
   padding: 51px 14px;
   background-color: #0f0f0f;
@@ -75,6 +76,9 @@
 
 .video-container .video-card {
   margin-top: 2rem;
+  transform: scale(0.95);
+  opacity: 1;
+  transition: all 0.5s ease;
 }
 
 .video-container .video-card .video-link img {
@@ -88,22 +92,29 @@
 .video-container .video-card .card-detail {
   display: flex;
   align-items: center;
+  width: 90%;
+  margin-top: 10px;
 }
 
 .video-container .video-card .card-detail img {
   width: 8%;
   margin: 12px 10px;
-  height: auto;
   background-size: cover;
   background-position: center;
+  object-fit: cover;
   border-radius: 100%;
 }
 
 .video-container .video-card .card-detail .card-title p {
-    font-size: clamp(1rem, 1.3vw, 2rem);
+  font-size: clamp(1rem, 1.3vw, 2rem);
 }
-.video-container .video-card .card-detail .card-title span {
-    font-size: clamp(1rem, 1.2vw, 2rem);
-    margin-top: 8px;
-    opacity: 0.5;
+
+.video-container .video-card .card-detail .card-title .chainnle-logo {
+  text-decoration: none;
+  color: white;
+  margin-top: 8px;
+}
+.video-container .video-card .card-detail .card-title a span {
+  font-size: clamp(1rem, 1.2vw, 2rem);
+  opacity: 0.5;
 }
