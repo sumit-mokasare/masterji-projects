@@ -1,0 +1,90 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+ 
+}
+
+.Home-section {
+  background: linear-gradient(to bottom, #cfdce7, #e0efff);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+   font-family: "Segoe UI", sans-serif;
+}
+
+.quote-card {
+  background-color: #2e2e2e;
+  color: white;
+  width: 40%;
+  padding: 40px;
+  border-radius: 10px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+  position: relative;
+  text-align: center;
+}
+
+.dubble-quote {
+  font-size: 40px;
+  position: absolute;
+  top: 25px;
+  left: 30px;
+  opacity: 0.3;
+}
+
+.quote {
+  font-size: 16px;
+  line-height: 1.6;
+  margin-bottom: 15px;
+  padding: 10px 0;
+}
+
+.auther {
+  display: block;
+  margin-bottom: 20px;
+  font-weight: bold;
+  color: #ccc;
+  font-style: italic;
+  letter-spacing: 2px;
+}
+
+.shear-icon,
+.refrash-icon {
+  display: inline-block;
+}
+
+.twitter-icon {
+  display: grid;
+  place-items: center;
+  background-color: #393c3d;
+  position: absolute;
+  right: 4%;
+  border: none;
+  padding: 3px 5px;
+  border-radius: 19%;
+  cursor: pointer;
+}
+
+.twitter-icon svg {
+  fill: rgb(188, 184, 184);
+  transition: 0.4s ease;
+}
+.twitter-icon svg:hover{
+  fill: white;
+}
+
+.refrash-icon {
+  display: grid;
+  place-items: center;
+  background-color: white;
+  color: #2e2e2e;
+  border: none;
+  padding: 8px 8px;
+  border-radius: 50%;
+  position: absolute;
+  bottom: -20px;
+  left: 50%;
+  transform: translateX(-50%);
+  cursor: pointer;
+}
