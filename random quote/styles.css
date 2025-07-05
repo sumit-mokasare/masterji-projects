@@ -38,9 +38,11 @@
   line-height: 1.6;
   margin-bottom: 15px;
   padding: 10px 0;
+  transition: all 0.5s ease;
 }
 
-.auther {
+
+.author {
   display: block;
   margin-bottom: 20px;
   font-weight: bold;
@@ -53,6 +55,8 @@
 .refrash-icon {
   display: inline-block;
 }
+
+
 
 .twitter-icon {
   display: grid;
@@ -88,3 +92,4 @@
   transform: translateX(-50%);
   cursor: pointer;
 }
+
