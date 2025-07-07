@@ -7,15 +7,15 @@
     <link rel="shortcut icon" href="assests/youTube-logo.webp" type="image/x-icon">
     <title>motivetion quote</title>
     <link rel="stylesheet" href="styles.css">
+
 </head>
 
 <body>
     <section class="Home-section" onclick="">
         <div class="quote-card">
             <span class="dubble-quote">“</span>
-            <p class="quote">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum neque architecto vero
-                ratione aliquam similique.</p>
-            <strong class="author"><span>~</span>auther</strong>
+            <p class="quote"></p>
+            <strong class="author"><span>~</span></strong>
             <div class="shear-icon">
                 <button class="twitter-icon"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
                         viewBox="0 0 30 30 ">
@@ -24,8 +24,14 @@
                         </path>
                     </svg>
                 </button>
+                <button data-html2canvas-ignore="true" class="export-icon" onclick="exportCard()"><svg
+                        xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                        stroke="currentColor" width="20" height="20">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="m9 13.5 3 3m0 0 3-3m-3 3v-6m1.06-4.19-2.12-2.12a1.5 1.5 0 0 0-1.061-.44H4.5A2.25 2.25 0 0 0 2.25 6v12a2.25 2.25 0 0 0 2.25 2.25h15A2.25 2.25 0 0 0 21.75 18V9a2.25 2.25 0 0 0-2.25-2.25h-5.379a1.5 1.5 0 0 1-1.06-.44Z" />
+                    </svg></button>
             </div>
-            <button class="refrash-icon">
+            <button data-html2canvas-ignore="true" class="refrash-icon">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="30" height="30" fill="currentColor">
                     <path fill-rule="evenodd"
                         d="M4.755 10.059a7.5 7.5 0 0 1 12.548-3.364l1.903 1.903h-3.183a.75.75 0 1 0 0 1.5h4.992a.75.75 0 0 0 .75-.75V4.356a.75.75 0 0 0-1.5 0v3.18l-1.9-1.9A9 9 0 0 0 3.306 9.67a.75.75 0 1 0 1.45.388Zm15.408 3.352a.75.75 0 0 0-.919.53 7.5 7.5 0 0 1-12.548 3.364l-1.902-1.903h3.183a.75.75 0 0 0 0-1.5H2.984a.75.75 0 0 0-.75.75v4.992a.75.75 0 0 0 1.5 0v-3.18l1.9 1.9a9 9 0 0 0 15.059-4.035.75.75 0 0 0-.53-.918Z"
@@ -35,6 +41,7 @@
         </div>
     </section>
 
+    <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
     <script src="index.js"></script>
 </body>
 

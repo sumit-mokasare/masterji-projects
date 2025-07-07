@@ -2,7 +2,6 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
- 
 }
 
 .Home-section {
@@ -11,7 +10,7 @@
   justify-content: center;
   align-items: center;
   height: 100vh;
-   font-family: "Segoe UI", sans-serif;
+  font-family: "Segoe UI", sans-serif;
 }
 
 .quote-card {
@@ -19,10 +18,22 @@
   color: white;
   width: 40%;
   padding: 40px;
-  border-radius: 10px;
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
   position: relative;
+
+  background-size: cover; /* image covers entire div */
+  background-position: center; /* center the image */
+  background-repeat: no-repeat; /* no repeat */
   text-align: center;
+}
+.quote-card::before {
+  content: " ";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* black with 50% opacity */
 }
 
 .dubble-quote {
@@ -30,33 +41,44 @@
   position: absolute;
   top: 25px;
   left: 30px;
-  opacity: 0.3;
+  z-index: 2;
 }
 
 .quote {
   font-size: 16px;
+  font-weight: bolder;
   line-height: 1.6;
   margin-bottom: 15px;
   padding: 10px 0;
   transition: all 0.5s ease;
+  height: auto;
+  min-height: 130px;
+  display: grid;
+  place-items: center;
+  position: sticky;
+  z-index: 2;
 }
-
 
 .author {
   display: block;
+  position: sticky;
   margin-bottom: 20px;
+  z-index: 2;
   font-weight: bold;
-  color: #ccc;
+  color: #ccccccea;
   font-style: italic;
   letter-spacing: 2px;
 }
 
-.shear-icon,
+.shear-icon {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
 .refrash-icon {
   display: inline-block;
 }
-
-
 
 .twitter-icon {
   display: grid;
@@ -69,12 +91,26 @@
   border-radius: 19%;
   cursor: pointer;
 }
+.export-icon {
+  position: absolute;
+  display: grid;
+  place-items: center;
+  background-color: #393c3d;
+  border: none;
+  color: #ccc;
+  padding: 3px 5px;
+  border-radius: 19%;
+  cursor: pointer;
+}
+.export-icon:hover{
+  color: white;
+}
 
 .twitter-icon svg {
   fill: rgb(188, 184, 184);
   transition: 0.4s ease;
 }
-.twitter-icon svg:hover{
+.twitter-icon svg:hover {
   fill: white;
 }
 
@@ -88,8 +124,6 @@
   border-radius: 50%;
   position: absolute;
   bottom: -20px;
-  left: 50%;
-  transform: translateX(-50%);
+  left: 45%;
   cursor: pointer;
 }
-
