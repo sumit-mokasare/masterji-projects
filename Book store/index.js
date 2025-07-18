@@ -2,11 +2,10 @@ const API_URL = 'https://api.freeapi.app/api/v1/public/books'
 
 const searchInput = document.getElementById('search-input')
 const searchButton = document.getElementById('search-button')
-const filterCheckBox = document.querySelectorAll('.check-box')
+const chekcBoxs = document.querySelectorAll('.check-box')
 const selector = document.getElementById('desgin-type')
 const cardContainer = document.querySelector('.card-container')
 const pagenationContainer = document.querySelector('.pagenation-btns')
-
 
 
 async function fetchData() {
@@ -17,9 +16,48 @@ async function fetchData() {
 
 let itemParPage = 6
 let currentPage = 1
+let sortedBooks = []
 
-function dilsplayCard(data) {
+async function filterData(key) {
+    let data = await fetchData()
+    if (!key) {
+        sortedBooks = data
+        renderCardUI(sortedBooks)
+        return
+    }
+
+    let sortedArray = data.sort((a, b) => {
+        let aVal = key === 'title' ? a.volumeInfo.title : a.volumeInfo.publishedDate
+        let bVal = key === 'title' ? b.volumeInfo.title : b.volumeInfo.publishedDate
+        if (key === 'date') {
+            return new Date(aVal) - new Date(bVal);
+        }
+        return aVal.localeCompare(bVal)
+    })
+    sortedBooks = sortedArray
+    
+    renderCardUI(pageData)
+}
+
+
+function filterCheckBox() {
+    chekcBoxs.forEach((el) => {
+        el.addEventListener('change', (e) => {
+            if (el.checked) {
+                filterData(e.target.value)
+            } else {
+                filterData(null)
+            }
+        })
+    })
+}
+filterCheckBox()
+
+
+
+function renderCardUI(data) {
     cardContainer.innerHTML = ' '
+
     data.forEach((item) => {
         const card = document.createElement('div')
         card.classList.add('card')
@@ -41,16 +79,16 @@ function dilsplayCard(data) {
 }
 
 async function displayData(page) {
-    let data = await fetchData()
+    let data = sortedBooks > 0 ? sortedBooks : await fetchData()
     let startIndex = (page - 1) * itemParPage
     let endIndex = startIndex + itemParPage
     let pageData = data.slice(startIndex, endIndex)
-    console.log('pagedata ', pageData);
-    dilsplayCard(pageData)
+    // console.log('pagedata ', pageData);
+    renderCardUI(pageData)
 }
 
 async function generatePaginationButton() {
-    let data = await fetchData()
+    let data = sortedBooks > 0 ? sortedBooks : await fetchData()
     const totalePage = Math.ceil(data.length / itemParPage)
 
     pagenationContainer.innerHTML = ''
@@ -67,7 +105,7 @@ async function generatePaginationButton() {
     })
     pagenationContainer.appendChild(PreviousButton)
 
-    for (let i = 1; i < totalePage; i++) {
+    for (let i = 1; i <= totalePage; i++) {
         const button = document.createElement('button')
         button.textContent = i
         button.disabled = i === currentPage
